@@ -1,5 +1,4 @@
 import 'package:final_submission/data/models/detail_model.dart';
-import 'package:final_submission/providers/detail_restaurant_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

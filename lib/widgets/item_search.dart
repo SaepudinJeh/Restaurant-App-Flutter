@@ -1,4 +1,3 @@
-import 'package:final_submission/data/models/restaurant_list_model.dart';
 import 'package:final_submission/data/models/search_restaurant_model.dart';
 import 'package:final_submission/pages/detail_screen.dart';
 import 'package:flutter/material.dart';

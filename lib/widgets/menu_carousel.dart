@@ -45,7 +45,7 @@ class _MenuCarouselState extends State<MenuCarousel> {
               controller: _pageController,
               itemCount: 5,
               itemBuilder: (context, position) {
-                return _CarouselView(position);
+                return _carouselView(position);
               }),
         ),
         DotsIndicator(
@@ -62,7 +62,7 @@ class _MenuCarouselState extends State<MenuCarousel> {
     );
   }
 
-  Widget _CarouselView(int position) {
+  Widget _carouselView(int position) {
     Matrix4 matrix = Matrix4.identity();
 
     if (position == _currenPageValue.floor()) {

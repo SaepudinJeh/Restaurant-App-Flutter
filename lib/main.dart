@@ -1,6 +1,5 @@
 import 'package:final_submission/data/api/restaurants_service.dart';
 import 'package:final_submission/data/api/search_restaurant_service.dart';
-import 'package:final_submission/data/models/detail_model.dart';
 import 'package:final_submission/pages/detail_screen.dart';
 import 'package:final_submission/pages/home_screen.dart';
 import 'package:final_submission/pages/search_screen.dart';

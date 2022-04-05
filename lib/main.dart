@@ -1,5 +1,7 @@
 import 'package:final_submission/data/api/restaurants_service.dart';
 import 'package:final_submission/data/api/search_restaurant_service.dart';
+import 'package:final_submission/data/models/detail_model.dart';
+import 'package:final_submission/pages/detail_screen.dart';
 import 'package:final_submission/pages/home_screen.dart';
 import 'package:final_submission/pages/splash_screen.dart';
 import 'package:final_submission/providers/restaurants_provider.dart';
@@ -36,7 +38,10 @@ class MyApp extends StatelessWidget {
               initialRoute: SplashScreen.routeName,
               routes: {
                 SplashScreen.routeName: (context) => const SplashScreen(),
-                HomeScreen.routeName: (context) => const HomeScreen()
+                HomeScreen.routeName: (context) => const HomeScreen(),
+                DetailScreen.routeName: (context) => DetailScreen(
+                      id: ModalRoute.of(context)?.settings.arguments as String,
+                    )
               },
             );
           }),

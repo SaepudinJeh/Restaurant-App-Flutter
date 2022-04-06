@@ -4,19 +4,25 @@ import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:final_submission/common/navigation.dart';
 import 'package:final_submission/data/api/restaurants_service.dart';
 import 'package:final_submission/data/api/search_restaurant_service.dart';
+import 'package:final_submission/helpers/db_helper.dart';
 import 'package:final_submission/helpers/notification_helper.dart';
 import 'package:final_submission/pages/detail_screen.dart';
 import 'package:final_submission/pages/home_screen.dart';
 import 'package:final_submission/pages/notification_screen.dart';
 import 'package:final_submission/pages/search_screen.dart';
 import 'package:final_submission/pages/splash_screen.dart';
+import 'package:final_submission/preferences/preferences.dart';
+import 'package:final_submission/providers/db_provider.dart';
+import 'package:final_submission/providers/preferences_provider.dart';
 import 'package:final_submission/providers/restaurants_provider.dart';
+import 'package:final_submission/providers/scheduling_provider.dart';
 import 'package:final_submission/providers/search_provider.dart';
 import 'package:final_submission/themes/text_theme.dart';
 import 'package:final_submission/utils/background_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -49,7 +55,10 @@ class MyApp extends StatelessWidget {
                   restaurantService: RestaurantService())),
           ChangeNotifierProvider(
               create: (_) => SearchRestaurantProvider(
-                  searchRestaurantService: SearchRestaurantService()))
+                  searchRestaurantService: SearchRestaurantService())),
+          ChangeNotifierProvider(create: (_) => SchedulingProvider()),
+          ChangeNotifierProvider(
+              create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()))
         ],
         child: Consumer<RestaurantListProvider>(
           builder: ((context, value, child) {

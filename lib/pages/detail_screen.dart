@@ -1,4 +1,5 @@
 import 'package:final_submission/pages/search_screen.dart';
+import 'package:final_submission/widgets/button_favorite.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -139,6 +140,7 @@ class _ListDetail extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const ButtonFavorite(),
                   Positioned(
                       left: 20.0,
                       bottom: 20.0,

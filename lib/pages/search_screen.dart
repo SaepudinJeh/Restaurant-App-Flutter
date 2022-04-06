@@ -1,3 +1,4 @@
+import 'package:final_submission/common/navigation.dart';
 import 'package:final_submission/providers/search_provider.dart';
 import 'package:final_submission/widgets/search_restaurant.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     color: Colors.black87,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigation.back();
                   },
                 ),
                 Padding(

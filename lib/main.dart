@@ -1,16 +1,39 @@
+import 'dart:io';
+
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:final_submission/common/navigation.dart';
 import 'package:final_submission/data/api/restaurants_service.dart';
 import 'package:final_submission/data/api/search_restaurant_service.dart';
+import 'package:final_submission/helpers/notification_helper.dart';
 import 'package:final_submission/pages/detail_screen.dart';
 import 'package:final_submission/pages/home_screen.dart';
+import 'package:final_submission/pages/notification_screen.dart';
 import 'package:final_submission/pages/search_screen.dart';
 import 'package:final_submission/pages/splash_screen.dart';
 import 'package:final_submission/providers/restaurants_provider.dart';
 import 'package:final_submission/providers/search_provider.dart';
 import 'package:final_submission/themes/text_theme.dart';
+import 'package:final_submission/utils/background_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final NotificationHelper _notificationHelper = NotificationHelper();
+  final BackgroundService _service = BackgroundService();
+
+  _service.initializeIsolate();
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+  }
+
+  await _notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+
   runApp(const MyApp());
 }
 
@@ -32,6 +55,7 @@ class MyApp extends StatelessWidget {
           builder: ((context, value, child) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
+              navigatorKey: navigatorKey,
               title: "Final Submission 3",
               theme:
                   ThemeData(primaryColor: Colors.amber, textTheme: myTextTheme),
@@ -42,7 +66,9 @@ class MyApp extends StatelessWidget {
                 DetailScreen.routeName: (context) => DetailScreen(
                       id: ModalRoute.of(context)?.settings.arguments as String,
                     ),
-                SearchScreen.routeName: (context) => const SearchScreen()
+                SearchScreen.routeName: (context) => const SearchScreen(),
+                NotificationScreen.routeName: (context) =>
+                    const NotificationScreen()
               },
             );
           }),

@@ -1,3 +1,4 @@
+import 'package:final_submission/common/navigation.dart';
 import 'package:final_submission/data/models/restaurant_list_model.dart';
 import 'package:final_submission/pages/detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,8 @@ class ItemRestaurant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, DetailScreen.routeName,
-          arguments: restaurant.id),
+      onTap: () =>
+          Navigation.intentWithData(DetailScreen.routeName, restaurant.id),
       child: Container(
         margin: EdgeInsets.all(Dimensions.height_10),
         child: Column(

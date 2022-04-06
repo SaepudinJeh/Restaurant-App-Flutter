@@ -1,7 +1,9 @@
+import 'package:final_submission/pages/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../common/navigation.dart';
 import '../data/api/detail_restaurant_service.dart';
 import '../providers/detail_restaurant_provider.dart';
 import '../themes/dimensions.dart';
@@ -122,14 +124,14 @@ class _ListDetail extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => Navigation.back(),
                           icon: const Icon(Icons.arrow_back_ios_rounded),
                           iconSize: Dimensions.icon_35,
                           color: Colors.white,
                         ),
                         IconButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, '/search_screen'),
+                          onPressed: () => Navigation.intentWithData(
+                              SearchScreen.routeName, ''),
                           icon: const Icon(Icons.search_rounded),
                           iconSize: Dimensions.icon_35,
                           color: Colors.white,

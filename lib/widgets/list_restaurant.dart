@@ -1,4 +1,4 @@
-import 'package:final_submission/pages/search_screen.dart';
+import 'package:final_submission/pages/notification_screen.dart';
 import 'package:final_submission/widgets/item_restaurant.dart';
 import 'package:final_submission/widgets/menu_carousel.dart';
 import 'package:flutter/material.dart';
@@ -48,9 +48,9 @@ class ListRestaurant extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () => Navigator.pushNamed(
-                            context, SearchScreen.routeName),
-                        icon: const Icon(Icons.search_rounded),
-                        iconSize: Dimensions.icon_35,
+                            context, NotificationScreen.routeName),
+                        icon: const Icon(Icons.notifications_active_outlined),
+                        iconSize: Dimensions.icon_30,
                         color: Colors.black.withOpacity(0.5),
                       )
                     ],

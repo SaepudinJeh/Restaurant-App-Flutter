@@ -65,7 +65,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             trailing:
                 Consumer<SchedulingProvider>(builder: (context, scheduled, _) {
               return Switch.adaptive(
-                  value: scheduled.isScheduled,
+                  value: provider.isDailyReminderActive,
                   onChanged: (value) async {
                     if (Platform.isIOS) {
                       customDialog(context);

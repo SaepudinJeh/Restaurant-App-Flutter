@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:final_submission/helpers/notification_helper.dart';
 import 'package:final_submission/pages/detail_screen.dart';
+import 'package:final_submission/providers/preferences_provider.dart';
 import 'package:final_submission/providers/scheduling_provider.dart';
 import 'package:final_submission/widgets/custom_dialog.dart';
 import 'package:flutter/material.dart';
@@ -57,22 +58,25 @@ class _NotificationScreenState extends State<NotificationScreen> {
             ),
           ),
         ]),
-        Material(
-            child: ListTile(
-          title: const Text("Scheduling Restaurant"),
-          trailing:
-              Consumer<SchedulingProvider>(builder: (context, scheduled, _) {
-            return Switch.adaptive(
-                value: scheduled.isScheduled,
-                onChanged: (value) async {
-                  if (Platform.isIOS) {
-                    customDialog(context);
-                  } else {
-                    scheduled.scheduledRestaurant(value);
-                  }
-                });
-          }),
-        ))
+        Material(child:
+            Consumer<PreferencesProvider>(builder: (context, provider, child) {
+          return ListTile(
+            title: const Text("Scheduling Restaurant"),
+            trailing:
+                Consumer<SchedulingProvider>(builder: (context, scheduled, _) {
+              return Switch.adaptive(
+                  value: scheduled.isScheduled,
+                  onChanged: (value) async {
+                    if (Platform.isIOS) {
+                      customDialog(context);
+                    } else {
+                      scheduled.scheduledRestaurant(value);
+                      provider.enableDailyReminder(value);
+                    }
+                  });
+            }),
+          );
+        }))
       ])),
     );
   }

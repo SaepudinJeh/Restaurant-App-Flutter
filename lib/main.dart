@@ -12,7 +12,6 @@ import 'package:final_submission/pages/home_screen.dart';
 import 'package:final_submission/pages/notification_screen.dart';
 import 'package:final_submission/pages/search_screen.dart';
 import 'package:final_submission/pages/splash_screen.dart';
-import 'package:final_submission/preferences/preferences.dart';
 import 'package:final_submission/providers/db_provider.dart';
 import 'package:final_submission/providers/preferences_provider.dart';
 import 'package:final_submission/providers/restaurants_provider.dart';
@@ -24,6 +23,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'helpers/preferences_helper.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -59,7 +60,15 @@ class MyApp extends StatelessWidget {
                   searchRestaurantService: SearchRestaurantService())),
           ChangeNotifierProvider(create: (_) => SchedulingProvider()),
           ChangeNotifierProvider(
-              create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()))
+              create: (_) =>
+                  DatabaseProvider(databaseHelper: DatabaseHelper())),
+          ChangeNotifierProvider(
+            create: (_) => PreferencesProvider(
+              preferencesHelper: PreferencesHelper(
+                sharedPreferences: SharedPreferences.getInstance(),
+              ),
+            ),
+          ),
         ],
         child: Consumer<RestaurantListProvider>(
           builder: ((context, value, child) {

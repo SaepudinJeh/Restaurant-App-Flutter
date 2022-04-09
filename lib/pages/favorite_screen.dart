@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/db_provider.dart';
@@ -27,7 +28,10 @@ class FavoriteScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Padding(
               padding: const EdgeInsets.only(top: 16),
-              child: Center(child: Text(state.message)),
+              child: Center(
+                  child: Text(state.message,
+                      style: GoogleFonts.comfortaa(
+                          textStyle: const TextStyle(fontSize: 20.0)))),
             ),
           );
         }

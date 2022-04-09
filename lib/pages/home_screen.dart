@@ -1,6 +1,7 @@
 import 'package:final_submission/helpers/notification_helper.dart';
 import 'package:final_submission/pages/favorite_screen.dart';
 import 'package:final_submission/widgets/list_restaurant.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,10 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<BottomNavigationBarItem> _bottomNavbarItems = const [
     BottomNavigationBarItem(
-        icon: Icon(Icons.home_outlined), label: "Restaurant"),
+        icon: Icon(CupertinoIcons.house_alt), label: "Restaurant"),
     BottomNavigationBarItem(
         icon: Icon(
-          Icons.favorite_outline,
+          CupertinoIcons.heart_circle,
         ),
         label: "Favorite"),
   ];
@@ -41,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _isNavbarActive,
         items: _bottomNavbarItems,
         onTap: _navbarActiveIndex,
+        selectedItemColor: Colors.deepOrange,
       ),
     );
   }

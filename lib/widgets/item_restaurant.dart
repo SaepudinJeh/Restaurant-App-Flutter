@@ -1,7 +1,6 @@
 import 'package:final_submission/common/navigation.dart';
 import 'package:final_submission/data/models/restaurant_list_model.dart';
 import 'package:final_submission/pages/detail_screen.dart';
-import 'package:final_submission/widgets/button_favorite.dart';
 import 'package:flutter/material.dart';
 
 import '../themes/dimensions.dart';

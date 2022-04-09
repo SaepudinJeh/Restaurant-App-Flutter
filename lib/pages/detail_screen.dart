@@ -41,7 +41,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 semanticsLabel: 'Loading ...',
               ));
             } else if (state.state == ResultState.hasData) {
-              return _ListDetail(data: state);
+              return _ListDetail(data: state, restaurant: widget.restaurant);
             } else if (state.state == ResultState.noData) {
               return Center(
                   child: Padding(
@@ -86,7 +86,9 @@ class _DetailScreenState extends State<DetailScreen> {
 
 class _ListDetail extends StatelessWidget {
   final DetailRestaurantProvider data;
-  const _ListDetail({Key? key, required this.data}) : super(key: key);
+  final Restaurant restaurant;
+  const _ListDetail({Key? key, required this.restaurant, required this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +165,10 @@ class _ListDetail extends StatelessWidget {
                           ),
                         ],
                       )),
+                  Positioned(
+                      right: 15.0,
+                      bottom: 15.0,
+                      child: ButtonFavorite(restaurant: restaurant))
                 ],
               ),
               Container(

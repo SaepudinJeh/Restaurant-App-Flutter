@@ -1,3 +1,4 @@
+import 'package:final_submission/themes/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,9 @@ class FavoriteScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: state.favorites.length,
             itemBuilder: (context, index) {
-              return ItemRestaurant(restaurant: state.favorites[index]);
+              return Padding(
+                  padding: EdgeInsets.only(top: Dimensions.height_20),
+                  child: ItemRestaurant(restaurant: state.favorites[index]));
             },
           );
         } else {

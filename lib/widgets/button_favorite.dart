@@ -1,10 +1,14 @@
+import 'package:final_submission/data/models/restaurant_list_model.dart';
 import 'package:final_submission/providers/db_provider.dart';
+import 'package:final_submission/themes/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ButtonFavorite extends StatefulWidget {
-  const ButtonFavorite({Key? key}) : super(key: key);
+  final Restaurant data;
+
+  const ButtonFavorite({Key? key, required this.data}) : super(key: key);
 
   @override
   State<ButtonFavorite> createState() => _ButtonFavoriteState();
@@ -18,22 +22,13 @@ class _ButtonFavoriteState extends State<ButtonFavorite> {
         var isFavorite = snapshot.data ?? false;
 
         return isFavorite
-            ? Positioned(
-                right: 20.0,
-                bottom: 20.0,
-                child: FloatingActionButton(
-                    onPressed: () => provider.removeFavorite(),
-                    backgroundColor: Colors.white,
-                    child:
-                        const Icon(CupertinoIcons.heart, color: Colors.pink)))
-            : Positioned(
-                right: 20.0,
-                bottom: 20.0,
-                child: FloatingActionButton(
-                    onPressed: () {},
-                    backgroundColor: Colors.white,
-                    child: const Icon(CupertinoIcons.heart_fill,
-                        color: Colors.pink)));
+            ? IconButton(
+                onPressed: () => provider.removeFavorite(widget.data.id),
+                icon:
+                    Icon(CupertinoIcons.heart_circle, size: Dimensions.icon_24))
+            : IconButton(
+                onPressed: () => provider.addFavorite(widget.data),
+                icon: Icon(CupertinoIcons.heart, size: Dimensions.icon_24));
       });
     });
   }

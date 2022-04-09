@@ -4,6 +4,7 @@ import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:final_submission/common/navigation.dart';
 import 'package:final_submission/data/api/restaurants_service.dart';
 import 'package:final_submission/data/api/search_restaurant_service.dart';
+import 'package:final_submission/data/models/restaurant_list_model.dart';
 import 'package:final_submission/helpers/db_helper.dart';
 import 'package:final_submission/helpers/notification_helper.dart';
 import 'package:final_submission/pages/detail_screen.dart';
@@ -73,7 +74,8 @@ class MyApp extends StatelessWidget {
                 SplashScreen.routeName: (context) => const SplashScreen(),
                 HomeScreen.routeName: (context) => const HomeScreen(),
                 DetailScreen.routeName: (context) => DetailScreen(
-                      id: ModalRoute.of(context)?.settings.arguments as String,
+                      restaurant: ModalRoute.of(context)?.settings.arguments
+                          as Restaurant,
                     ),
                 SearchScreen.routeName: (context) => const SearchScreen(),
                 NotificationScreen.routeName: (context) =>

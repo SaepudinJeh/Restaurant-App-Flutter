@@ -1,3 +1,4 @@
+import 'package:final_submission/data/models/restaurant_list_model.dart';
 import 'package:final_submission/pages/search_screen.dart';
 import 'package:final_submission/widgets/button_favorite.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,8 @@ import '../widgets/star_rating.dart';
 class DetailScreen extends StatefulWidget {
   static const routeName = '/restaurant-detail';
 
-  final String id;
-  const DetailScreen({Key? key, required this.id}) : super(key: key);
+  final Restaurant restaurant;
+  const DetailScreen({Key? key, required this.restaurant}) : super(key: key);
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -29,7 +30,8 @@ class _DetailScreenState extends State<DetailScreen> {
         backgroundColor: Colors.white,
         body: ChangeNotifierProvider<DetailRestaurantProvider>(
           create: (_) => DetailRestaurantProvider(
-              detailRestorantService: DetailRestorantService(), id: widget.id),
+              detailRestorantService: DetailRestorantService(),
+              id: widget.restaurant.id),
           child:
               Consumer<DetailRestaurantProvider>(builder: (context, state, _) {
             if (state.state == ResultState.loading) {
@@ -140,7 +142,6 @@ class _ListDetail extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const ButtonFavorite(),
                   Positioned(
                       left: 20.0,
                       bottom: 20.0,
